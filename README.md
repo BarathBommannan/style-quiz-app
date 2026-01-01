@@ -8,7 +8,7 @@ Users answer a visual like/dislike quiz, and the app generates personalized outf
 
 Short walkthrough of the app:
 
-[▶️ Watch Demo Video](./outputVideo.mp4)
+[▶️ Watch Demo Video](./OutputVideo.mp4)
 
 
 ✨ Features
