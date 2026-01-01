@@ -1,50 +1,135 @@
-# Welcome to your Expo app 👋
+👕 Style Quiz – Fashion Recommendation App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A mobile-first fashion recommendation app built using Expo (React Native), FastAPI, and machine learning.
+Users answer a visual like/dislike quiz, and the app generates personalized outfit recommendations with confidence scores and natural-language explanations using a locally hosted LLM (Ollama).
 
-## Get started
 
-1. Install dependencies
+## 🎥 Demo Video
 
-   ```bash
-   npm install
-   ```
+Short walkthrough of the app:
 
-2. Start the app
+[▶️ Watch Demo Video](./outputVideo.mp4)
 
-   ```bash
-   npx expo start
-   ```
 
-In the output, you'll find options to open the app in a
+✨ Features
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Gender-based visual quiz
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Like / dislike interaction using heart icons
 
-## Get a fresh project
+Preference aggregation from quiz responses
 
-When you're ready, run:
+ML-based recommendation scoring (TF-IDF + Logistic Regression)
 
-```bash
-npm run reset-project
-```
+Natural-language explanations using a local LLM (Ollama)
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Clean, modern UI built with Expo
 
-## Learn more
+Fully runnable locally for demo purposes
 
-To learn more about developing your project with Expo, look at the following resources:
+🧠 Tech Stack
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Frontend: Expo (React Native), expo-router, Ionicons
 
-## Join the community
+Backend: FastAPI (Python)
 
-Join our community of developers creating universal apps.
+ML: TF-IDF + Logistic Regression
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+LLM: Ollama (llama3.1:8b – runs locally)
+
+Communication: REST API over local network
+
+🚀 How to Run the Project
+⚠️ Important: Update Your Local IP Address
+
+Before running the app, update your local machine IP in the frontend.
+
+File:
+app/loading.tsx
+
+Update this line:
+
+const res = await fetch("http://192.168.1.10:8000/recommend", {
+
+
+➡️ Replace 192.168.1.10 with your current local IP address
+(use ipconfig on Windows or ifconfig on macOS/Linux)
+
+This allows the Expo app to communicate with the backend over WiFi.
+
+1️⃣ Install Ollama
+
+Download and install Ollama from:
+👉 https://ollama.com
+
+Verify installation:
+
+ollama --version
+
+2️⃣ Download the LLM Model (One-Time Setup)
+ollama run llama3.1:8b
+
+
+📦 Note:
+
+Downloads ~4GB
+
+Required only once
+
+Model is reused on future runs
+
+3️⃣ Start the Frontend (Expo App)
+
+From the project root folder, run:
+
+npm install
+npm start
+
+or
+
+npx expo start
+
+Open the app using Expo Go on your mobile device
+
+Ensure your phone and laptop are on the same WiFi network
+
+4️⃣ Start the Backend (FastAPI)
+
+Open a new terminal, navigate to the backend folder:
+
+cd backend
+
+Run the server:
+
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+
+Backend will be available at:
+
+http://<YOUR_LOCAL_IP>:8000
+
+5️⃣ Start Ollama (If Needed)
+
+Ollama usually runs automatically. To verify:
+
+ollama list
+
+🔄 Application Flow
+
+1. User selects gender
+
+2. User likes/dislikes outfit images
+
+3. Preferences are sent to the backend
+
+4. ML model scores recommendations
+
+5. Ollama generates human-like explanations
+
+6. Results are displayed with:
+
+      Product image
+
+      Match explanation
+
+      Confidence score
